@@ -31,6 +31,17 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended(route('dashboard', absolute: false));
     }
 
+    // protected function redirectBasedOnRole(): RedirectResponse
+    // {
+    //     $user = Auth::user();
+
+    //     if ($user->is_admin('0')) {
+    //         return redirect()->route('admin.dashboard');
+    //     }
+
+    //     return redirect()->route('dashboard');
+    // }
+
     /**
      * Destroy an authenticated session.
      */
