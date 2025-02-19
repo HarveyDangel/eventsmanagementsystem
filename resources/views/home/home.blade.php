@@ -1,4 +1,8 @@
-<section id="home" class="section py-10 h-full max-h-screen">
+<div id="home" >
+
+</div>
+
+<section class="section py-10 h-full max-h-screen">
    <div class="container mx-auto grid md:grid-cols-2 gap-2 ">
       <div class="section-header mb-12 items-center">
          <h2 class="section-title text-6xl font-extrabold text-gray-800 mb-4 mt-10 flex flex-wrap">CREATING EVENTS MADE EASY</h2>
