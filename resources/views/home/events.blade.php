@@ -2,7 +2,7 @@
 
 </div>
 
-<section class="section py-12">
+<section class="section py-10 mt-10">
    <div class="container mx-auto">
       <div class="section-header text-center mb-12">
          <h2 class="section-title text-4xl font-bold text-gray-800">Upcomming events for you</h2>

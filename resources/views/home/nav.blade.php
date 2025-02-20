@@ -5,8 +5,8 @@
         </div>
         <div class="-mx-3 flex flex-1 justify-end me-0">
             <a href="#events" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-indigo-700 focus:outline-none focus-visible:ring-indigo-700">Event</a>
-            <a href="" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-indigo-700 focus:outline-none focus-visible:ring-indigo-700">Feedback</a>
-            <a href="" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-indigo-700 focus:outline-none focus-visible:ring-indigo-700">About</a>
+            <a href="#feedback" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-indigo-700 focus:outline-none focus-visible:ring-indigo-700">Feedback</a>
+            <a href="#about" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-indigo-700 focus:outline-none focus-visible:ring-indigo-700">About</a>
             @if(Route::has('login'))
                 @auth
                     <a href="{{url('/dashboard')}}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-indigo-700 focus:outline-none focus-visible:ring-indigo-700">Dashboard</a>
