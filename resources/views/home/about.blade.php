@@ -24,12 +24,16 @@
                      and reduce paperwork.</p>
                </div>
                <div class="p-10 bg-white text-center text-gray-800 rounded-lg shadow-md m-5 ">
-                  <h1 class="text-xl">ICON</h1>
+                  <div class="flex justify-center items-center">
+                     <x-heroicon-o-chat-bubble-left-right class="size-10"/>
+                  </div>
                   <p class="text-lg font-semibold ">Enable smooth interaction between
                      event organizers, and admins.</p>
                </div>
                <div class="p-10 bg-white text-center text-gray-800 rounded-lg shadow-md m-5 ">
-                  <h1 class="text-xl">ICON</h1>
+                  <div class="flex justify-center items-center">
+                     <x-heroicon-o-device-phone-mobile class="size-10"/>
+                  </div>
                   <p class="text-lg font-semibold ">Access and manage events anytime, 
                      anywhere.</p>
                </div>
