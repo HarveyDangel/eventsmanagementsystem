@@ -1,8 +1,18 @@
-<section id="events" class="section py-12">
+<div id="events">
+
+</div>
+
+<section class="section py-12">
    <div class="container mx-auto">
       <div class="section-header text-center mb-12">
-         <h2 class="section-title text-4xl font-bold">Events</h2>
-         <span class="text-gray-500">Events</span>
+         <h2 class="section-title text-4xl font-bold text-gray-800">Upcomming events for you</h2>
+         <div class="w-full max-w-4xl mx-auto mt-4 grid grid-cols-4 gap-3 text-gray-700 ">
+            <p>Seminar</p>
+            <p>Sports</p>
+            <p>Cultural</p>
+            <p>Others</p>
+         </div>
+         <span class="text-gray-500"></span>
       </div>
       <div class="row flex flex-wrap -mx-4">
          {{-- @foreach($events as $event)

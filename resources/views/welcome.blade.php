@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Event MS</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -26,6 +26,10 @@
                         @include('home.home')
                         
                         @include('home.events')
+
+                        @include('home.feedback')
+
+                        @include('home.about')
                         <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
 
                             <a
@@ -133,8 +137,6 @@
                             </div>
                         </div>
                     </main>
-                    
-                    
                 </div>
                 @include('home.footer')
             </div>
