@@ -28,19 +28,21 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return $this->redirectBasedOnRole();
     }
 
-    // protected function redirectBasedOnRole(): RedirectResponse
-    // {
-    //     $user = Auth::user();
+    protected function redirectBasedOnRole(): RedirectResponse
+    {
+        $user = Auth::user();
 
-    //     if ($user->is_admin('0')) {
-    //         return redirect()->route('admin.dashboard');
-    //     }
-
-    //     return redirect()->route('dashboard');
-    // }
+        if ($user->is_admin('0')) {
+            return redirect()->route('admin');
+        }
+        if ($user->is_user('1')) {
+            return redirect()->route('dashboard');
+        }
+        abort('403', 'Unauthorized Access');
+    }
 
     /**
      * Destroy an authenticated session.

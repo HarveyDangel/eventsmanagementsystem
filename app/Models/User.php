@@ -23,6 +23,17 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function is_admin()
+    {
+        return $this->role === '0';
+    }
+    public function is_user()
+    {
+        return $this->role === '1';
+    }
+
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
