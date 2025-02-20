@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('category');
             $table->string('venue');
             $table->string('image');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->integer('duration');
             $table->enum('status', ['pending', 'approved', 'declined'])->default('pending');
             $table->text('comments')->nullable(true);
