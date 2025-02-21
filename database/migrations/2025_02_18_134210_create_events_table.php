@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('image');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->integer('duration');
+            $table->string('duration');
             $table->enum('status', ['pending', 'approved', 'declined'])->default('pending');
             $table->text('comments')->nullable(true);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
