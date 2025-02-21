@@ -119,6 +119,7 @@ class EventController extends Controller
             "user_id"=> ["nullable","string"],
         ]);
 
+        $event->update($request->all());
     }
 
     /**
