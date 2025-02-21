@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 // 0 is admin
 
 
-// for both user role
+// ! for both user role
 
 Route::middleware(['auth'])->group(function () {
     Route::get('events', [EventController::class, 'index'])->name('events.index');
@@ -22,6 +22,7 @@ Route::middleware(['auth', '1'])->group(function () {
     Route::post('/events', [EventController::class, 'store'])->name('events.store');
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 });
+
 
 // * Event History Route
 
