@@ -15,10 +15,11 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->middleware(['auth','1', 'verified'])->name('dashboard');
 
+// ! admin dashboard route
 Route::middleware(['auth', '0'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 });
-
+// ! user dashboard route
 Route::middleware(['auth', '1'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
 });

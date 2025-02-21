@@ -27,6 +27,7 @@ class User extends Authenticatable
     {
         return $this->role === '0';
     }
+    
     public function is_user()
     {
         return $this->role === '1';

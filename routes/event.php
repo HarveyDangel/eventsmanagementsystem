@@ -23,9 +23,8 @@ Route::middleware(['auth', '1'])->group(function () {
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 });
 
-
 // * Event History Route
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/history', [EventController::class, 'eventHistory'])->name('events.history-index');
+    Route::get('/history', [EventController::class, 'eventHistory'])->name('events.history');
 });

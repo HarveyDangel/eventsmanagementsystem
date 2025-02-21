@@ -30,6 +30,11 @@ class EventController extends Controller
         
     }
 
+    public function eventHistory()
+    {
+        return view("events.events-history");
+    }
+
     /**
      * Show the form for creating a new resource.
      */
