@@ -18,7 +18,8 @@
                         </x-nav-link>
                         <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.index') ||
                             request()->routeIs('events.create') ||
-                            request()->routeIs('events.show')">
+                            request()->routeIs('events.show') ||
+                            request()->routeIs('events.edit')">
                             {{ __('Events') }}
                         </x-nav-link>
                         <x-nav-link :href="route('events.history')" :active="request()->routeIs('events.history')">

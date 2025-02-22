@@ -107,22 +107,42 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //
         $request->validate([
             "name" => ["nullable", "string", "max:255"],
             "description" => ["nullable", "string", "max:255"],
-            "Category" => ["nullable", "string"],
+            "category" => ["nullable", "string"], // Fixed typo (Category → category)
             "venue" => ["nullable", "string"],
-            "image" => ["nullable", "string"],
-            "start_date" => ["nullable", "dateTime"],
-            "end_date" => ["nullable", "dateTime"],
+            "image" => ["nullable", "image", "mimes:png,jpg,jpeg|max:2048"], // Fixed image validation
+            "start_date" => ["nullable", "date"],
+            "end_date" => ["nullable", "date", "after_or_equal:start_date"], // Ensures valid date order
             "duration" => ["nullable", "string"],
             "status" => ["nullable", "string"],
             "comments" => ["nullable", "string"],
-            "user_id" => ["nullable", "string"],
+            "user_id" => ["nullable", "exists:users,id"], // Ensures valid user ID
         ]);
 
-        $event->update($request->all());
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete old image if it exists
+            if ($event->image) {
+                Storage::disk('public')->delete($event->image);
+            }
+            // Store new image
+            $imagePath = $request->file('image')->store('events', 'public');
+            $event->image = $imagePath;
+        }
+
+        // Update event with validated data
+        $event->update($request->except(['image'])); // Exclude image to update it separately
+
+        // Save the new image path if updated
+        if (isset($imagePath)) {
+            $event->save();
+        }
+
+        Alert::success('Updated!', 'Event details have been updated.');
+
+        return redirect()->route('events.index')->with('message', 'Event updated successfully');
     }
 
     /**
@@ -136,7 +156,7 @@ class EventController extends Controller
         }
         $event->delete();
 
-        Alert::success('Congrats!', 'An event has been deleted successfully.');
+        Alert::success('Congrats!', 'An event has been deleted.');
 
         return redirect()->route("events.index")->with("message", "Event deleted successfully");
     }
