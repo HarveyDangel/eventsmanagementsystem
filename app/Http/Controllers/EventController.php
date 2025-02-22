@@ -18,7 +18,6 @@ class EventController extends Controller
         return view("events.index", [
             "events" => Event::all(),
         ]);
-        
     }
 
     public function userIndex()
@@ -27,7 +26,6 @@ class EventController extends Controller
         return view("events.index", [
             "events" => Event::user_id(),
         ]);
-        
     }
 
     public function eventHistory()
@@ -49,28 +47,28 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
         $request->validate([
-            "name"=> "required|string|max:255",
-            "description"=> "required|string|max:255",
-            "Category"=> "required|string",
-            "venue"=> "required|string",
-            "image"=> "image|mimes:png,jpg,jpeg|max:2048",
-            "start_date"=> "required|dateTime",
-            "end_date"=> "required|dateTime",
-            "duration"=> "required|string",
-            "status"=> "required|string",
-            "comments"=> "nullable|string",
-            "user_id"=> "nullable|string",
+            "name" => "required|string|max:255",
+            "description" => "required|string|max:255",
+            "category" => "required|string",
+            "venue" => "required|string",
+            "image" => "image|mimes:png,jpg,jpeg|max:2048",
+            "start_date" => "required|date",
+            "end_date" => "required|date",
+            "duration" => "required|string",
+            "comments" => "nullable|string",
         ]);
 
+        // dd($request->all());
+
         $imagePath = null;
-        if ($request->hasFile("image")) 
-        {
-            $imagePath = $request->file("image")->store("post", "public");
+        if ($request->hasFile("image")) {
+            $imagePath = $request->file("image")->store("events", "public");
         }
 
         Event::create([
+            'user_id' => $request->user_id, // Store the user ID
             'name' => $request->name,
             'description' => $request->description,
             'category' => $request->category,
@@ -79,9 +77,7 @@ class EventController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'duration' => $request->duration,
-            'status' => $request->status,
             'comments' => $request->comments,
-            'user_id' => $request->user_id,
         ]);
 
         return redirect()->route("events.index")->with("message", "Event created successfully");
@@ -92,7 +88,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        return view('events.show', compact('event'));
     }
 
     /**
@@ -111,17 +107,17 @@ class EventController extends Controller
     {
         //
         $request->validate([
-            "name"=> ["nullable","string","max:255"],
-            "description"=> ["nullable","string", "max:255"],
-            "Category"=> ["nullable","string"],
-            "venue"=> ["nullable","string"],
-            "image"=> ["nullable","string"],
-            "start_date"=> ["nullable","dateTime"],
-            "end_date"=> ["nullable","dateTime"],
-            "duration"=> ["nullable","string"],
-            "status"=> ["nullable","string"],
-            "comments"=> ["nullable","string"],
-            "user_id"=> ["nullable","string"],
+            "name" => ["nullable", "string", "max:255"],
+            "description" => ["nullable", "string", "max:255"],
+            "Category" => ["nullable", "string"],
+            "venue" => ["nullable", "string"],
+            "image" => ["nullable", "string"],
+            "start_date" => ["nullable", "dateTime"],
+            "end_date" => ["nullable", "dateTime"],
+            "duration" => ["nullable", "string"],
+            "status" => ["nullable", "string"],
+            "comments" => ["nullable", "string"],
+            "user_id" => ["nullable", "string"],
         ]);
 
         $event->update($request->all());
