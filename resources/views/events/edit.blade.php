@@ -150,14 +150,24 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <!-- Submit Button Must be Inside the Form -->
+                        <div class="flex justify-end mt-2">
+                            <x-primary-button type="submit"
+                                class="flex items-center gap-2 text-white hover:text-white">
+                                <x-heroicon-o-check class="w-5 h-5 inline" />
+                                <span>Update Event</span>
+                            </x-primary-button>
+                        </div>
+
                     </form>
                 </div>
-                <div class="w-full flex justify-end mt-2">
+                {{-- <div class="w-full flex justify-end mt-2">
                     <x-primary-button type="submit" class="flex items-center gap-2 text-white hover:text-white">
                         <x-heroicon-o-check class="w-5 h-5 inline" />
                         <span>Update Event</span>
                     </x-primary-button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
