@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class EventController extends Controller
 {
@@ -80,6 +80,8 @@ class EventController extends Controller
             'comments' => $request->comments,
         ]);
 
+        Alert::success('Congrats!', 'A new event has been added.');
+
         return redirect()->route("events.index")->with("message", "Event created successfully");
     }
 
@@ -133,6 +135,8 @@ class EventController extends Controller
             Storage::disk("public")->delete($event->image);
         }
         $event->delete();
+
+        Alert::success('Congrats!', 'An event has been deleted successfully.');
 
         return redirect()->route("events.index")->with("message", "Event deleted successfully");
     }

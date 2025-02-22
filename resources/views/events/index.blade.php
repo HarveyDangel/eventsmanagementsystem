@@ -19,6 +19,8 @@
                     <h1 class="text-md font-semibold">Create Event</h1>
                 </a>
 
+                @include('sweetalert::alert')
+
                 <!-- Event Cards -->
                 @foreach ($events as $event)
                     <div

@@ -30,25 +30,10 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <!-- Left Column -->
                             <div>
-                                {{-- <!-- Image Upload -->
-                                <div id="imageUploadContainer"
-                                    class="relative flex flex-col items-center justify-center bg-indigo-400 text-white text-center rounded-lg cursor-pointer event-card w-full h-40 mb-4 overflow-hidden"
-                                    onclick="document.getElementById('imageUpload').click();">
-                                    <input type="file" id="imageUpload" name="image" accept="image/*"
-                                        class="hidden">
-                                    <img id="imagePreview" src="" alt="Image Preview"
-                                        class="hidden w-full h-full object-cover rounded-lg absolute top-0 left-0">
-
-                                    <div id="uploadOverlay"
-                                        class="absolute flex flex-col items-center justify-center w-full h-full">
-                                        <span class="text-4xl">+</span>
-                                        <span class="text-md">Upload Image</span>
-                                    </div>
-                                </div> --}}
 
                                 <!-- Image Upload -->
                                 <div id="imageUploadContainer"
-                                    class="relative flex flex-col items-center justify-center bg-purple-300 text-white text-center rounded-lg cursor-pointer event-card w-full h-40 mb-4 overflow-hidden"
+                                    class="relative flex flex-col items-center justify-center bg-indigo-400 text-white text-center rounded-lg cursor-pointer event-card w-full h-40 mb-4 overflow-hidden"
                                     onclick="document.getElementById('imageUpload').click();">
                                     <input type="file" id="imageUpload" accept="image/*" name="image"
                                         class="hidden">
@@ -57,7 +42,7 @@
 
                                     <!-- Always Visible Upload UI -->
                                     <div id="uploadOverlay"
-                                        class="absolute flex flex-col items-center justify-center w-full h-full bg-indigo-400 rounded-lg transition-opacity">
+                                        class="absolute flex flex-col items-center justify-center w-full h-full rounded-lg transition-opacity bg-opacity-50">
                                         <span class="text-4xl">+</span>
                                         <span class="text-md">Upload Image</span>
                                     </div>
@@ -242,7 +227,7 @@
                         imagePreview.src = e.target.result;
                         imagePreview.classList.remove("hidden");
                         uploadOverlay.classList.remove("bg-opacity-50");
-                        uploadOverlay.classList.add("bg-opacity-50");
+                        uploadOverlay.classList.add("bg-opacity-75");
                     };
 
                     reader.readAsDataURL(file);
