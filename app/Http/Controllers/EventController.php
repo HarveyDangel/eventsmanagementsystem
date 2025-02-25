@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -15,17 +17,16 @@ class EventController extends Controller
     public function index()
     {
         //
-        return view("events.index", [
-            "events" => Event::orderBy('created_at', 'desc')->paginate(5),
-        ]);
-    }
+        $user = Auth::user();
 
-    public function userIndex()
-    {
-        //
-        return view("events.index", [
-            "events" => Event::user_id(),
-        ]);
+        // Check if the user is allowed to view all events (admin)
+        if (Gate::allows('viewAny', Event::class)) {
+            $events = Event::orderBy('created_at', 'desc')->paginate(5); // Admin sees all events
+        } else {
+            $events = Event::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(5); // User sees only their events
+        }
+
+        return view("events.index", compact("events"));
     }
 
     public function eventHistory()
@@ -90,7 +91,10 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return view('events.show', compact('event'));
+        if (Gate::allows('view', $event)) {
+            return view('events.show', compact('event'));
+        }
+        abort(403, 'Unauthorized action.');
     }
 
     /**

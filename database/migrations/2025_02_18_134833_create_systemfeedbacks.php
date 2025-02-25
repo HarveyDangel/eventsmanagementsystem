@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->text('feedback');
-            $table->enum('status', ['Saved', 'Posted'])->default('Saved');
+            $table->enum('status', ['saved', 'posted'])->default('saved');
             $table->timestamps();
         });
     }
