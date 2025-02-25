@@ -27,11 +27,10 @@
                             <textarea name="feedback" class="bg-[#FFFFF0] rounded-lg w-full min-h-48" id=""
                                 placeholder="Tell us more about your experience..."></textarea>
 
-                            <div class="flex justify-center mt-5 gap-5">
                                 <x-outlined-primary-button class="flex-1 text-center bg-white">
                                     {{ __('Cancel') }}
                                 </x-outlined-primary-button>
-                            
+
                                 <x-primary-button class="flex-1">
                                     {{ __('Submit') }}
                                 </x-primary-button>
