@@ -21,6 +21,7 @@ Route::middleware(['auth', '1'])->group(function () {
     Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
     Route::post('/events', [EventController::class, 'store'])->name('events.store');
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+    Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
 });
 
 // * Event History Route
