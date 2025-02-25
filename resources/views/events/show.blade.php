@@ -12,7 +12,7 @@
                     <ol class="flex space-x-2 text-gray-600">
                         <li><a href="{{ route('events.index') }}" class="hover:text-gray-800">Events</a></li>
                         <li>/</li>
-                        <li class="text-gray-800 font-semibold">View</li>
+                        <li class="text-gray-800 font-semibold">View Details</li>
                     </ol>
                 </nav>
 
@@ -24,11 +24,12 @@
                     </a>
                 </x-primary-button>
 
-                <!-- 3 Column Layout -->
-                <div class="grid grid-cols-4 gap-6 w-full">
+                <!-- Responsive Grid Layout -->
+                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-6 w-full">
 
-                    <!-- Image Section (Col 1-2) -->
-                    <div class="col-span-2 h-80 md:h-full bg-purple-300 rounded-lg flex items-center justify-center">
+                    <!-- Image Section (Full width on mobile, half on larger screens) -->
+                    <div
+                        class="h-80 sm:h-96 md:h-[28rem] bg-purple-300 rounded-lg flex items-center justify-center overflow-hidden">
                         @if ($event->image)
                             <img src="{{ asset('storage/' . $event->image) }}"
                                 class="w-full h-full object-cover rounded-lg" alt="Event Image">
@@ -37,9 +38,9 @@
                         @endif
                     </div>
 
-                    <!-- Event Details (Col 3-4) -->
-                    <div class="col-span-2 space-y-4">
-                        <div class="grid grid-cols-2 gap-4">
+                    <!-- Event Details -->
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-gray-700 font-medium mb-1">Event Name</label>
                                 <div class="p-3 bg-gray-200 rounded-md">{{ $event->name }}</div>
@@ -52,7 +53,7 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-gray-700 font-medium mb-1">Category</label>
                                 <div class="p-3 bg-gray-200 rounded-md">{{ $event->category }}</div>
@@ -65,7 +66,7 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-gray-700 font-medium mb-1">Venue</label>
                                 <div class="p-3 bg-gray-200 rounded-md">{{ $event->venue }}</div>
@@ -76,13 +77,12 @@
                             </div>
                         </div>
 
-                        <!-- Description (Now Below Only Col 3-4) -->
+                        <!-- Description -->
                         <div class="col-span-2">
                             <label class="block text-gray-700 font-medium mb-1">Description</label>
                             <textarea rows="4" class="bg-gray-200 rounded-md w-full resize-none border-none focus:ring-0 p-2 leading-normal"
                                 readonly>{{ $event->description }}</textarea>
                         </div>
-
                     </div>
 
                 </div>
