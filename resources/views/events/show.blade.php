@@ -12,10 +12,11 @@
                     <ol class="flex space-x-2 text-gray-600">
                         <li><a href="{{ route('events.index') }}" class="hover:text-gray-800">Events</a></li>
                         <li>/</li>
-                        <li class="text-gray-800 font-semibold">View</li>
+                        <li class="text-gray-800 font-semibold">Details</li>
                     </ol>
                 </nav>
 
+                <!-- Back Button -->
                 <x-primary-button class="self-start mb-5">
                     <a href="{{ route('events.index') }}" class="flex items-center gap-2 text-white hover:text-white">
                         <x-heroicon-o-arrow-uturn-left class="w-5 h-5 inline" />
