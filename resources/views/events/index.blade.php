@@ -1,5 +1,7 @@
 <x-app-layout>
-    <div class="p-6 bg-gray-100 min-h-screen flex justify-center">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <div class="p-6 bg-gray-100 flex justify-center">
         <div class="bg-white shadow-lg rounded-lg p-6 max-w-6xl w-full">
             <h1 class="text-2xl font-semibold mb-4">Events</h1>
 
@@ -11,10 +13,10 @@
                 </ol>
             </nav>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
                 <!-- Add Event Card -->
                 <a href="{{ route('events.create') }}"
-                    class="flex flex-col items-center justify-center bg-indigo-400 text-white text-center rounded-lg cursor-pointer h-40 md:h-full">
+                    class="flex flex-col items-center justify-center bg-indigo-400 text-white hover:shadow-lg hover:scale-105 transition-all duration-300 text-center rounded-lg cursor-pointer h-40 md:h-full">
                     <span class="text-6xl md:text-6xl">+</span>
                     <h1 class="text-md font-semibold">Create Event</h1>
                 </a>
@@ -68,19 +70,41 @@
                             </a>
 
                             <!-- Delete Button -->
-                            <form action="{{ route('events.destroy', $event->id) }}" method="POST"
+                            <form id="delete-form-{{ $event->id }}"
+                                action="{{ route('events.destroy', $event->id) }}" method="POST"
                                 class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 text-red-500">
                                 @csrf
                                 @method('DELETE')
                                 <x-heroicon-o-trash class="w-5 h-5" />
-                                <button type="submit" class="text-red-500">Delete</button>
+                                <button type="button" class="text-red-500"
+                                    onclick="confirmDelete({{ $event->id }})">Delete</button>
                             </form>
                         </div>
                     </div>
                 @endforeach
             </div>
+            {{ $events->links() }}
         </div>
     </div>
+    <script>
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If confirmed, submit the form
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+    </script>
     <script>
         function toggleDropdown(event, id) {
             event.stopPropagation(); // Prevents navigation

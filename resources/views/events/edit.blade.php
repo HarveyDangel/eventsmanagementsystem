@@ -31,7 +31,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <div id="imageUploadContainer"
-                                    class="relative flex flex-col items-center justify-center bg-indigo-400 text-white text-center rounded-lg cursor-pointer event-card w-full h-40 mb-4 overflow-hidden"
+                                    class="relative flex flex-col items-center justify-center bg-indigo-400 text-white text-center rounded-lg cursor-pointer event-card w-full h-40 mb-4 overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300"
                                     onclick="document.getElementById('imageUpload').click();">
 
                                     <input type="file" id="imageUpload" accept="image/*" name="image"

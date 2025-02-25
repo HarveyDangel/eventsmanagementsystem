@@ -16,7 +16,7 @@ class EventController extends Controller
     {
         //
         return view("events.index", [
-            "events" => Event::all(),
+            "events" => Event::orderBy('created_at', 'desc')->paginate(5),
         ]);
     }
 
