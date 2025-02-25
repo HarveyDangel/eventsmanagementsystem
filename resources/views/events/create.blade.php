@@ -177,6 +177,15 @@
         document.addEventListener("DOMContentLoaded", function() {
             const startDateInput = document.getElementById("start_date");
             const endDateInput = document.getElementById("end_date");
+
+            startDateInput.addEventListener("change", function() {
+                endDateInput.min = startDateInput.value; // Set the minimum selectable date for end_date
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const startDateInput = document.getElementById("start_date");
+            const endDateInput = document.getElementById("end_date");
             const durationInput = document.getElementById("duration");
 
             function calculateDuration() {
