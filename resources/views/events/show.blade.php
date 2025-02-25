@@ -12,7 +12,7 @@
                     <ol class="flex space-x-2 text-gray-600">
                         <li><a href="{{ route('events.index') }}" class="hover:text-gray-800">Events</a></li>
                         <li>/</li>
-                        <li class="text-gray-800 font-semibold">Details</li>
+                        <li class="text-gray-800 font-semibold">View Details</li>
                     </ol>
                 </nav>
 
