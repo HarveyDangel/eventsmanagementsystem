@@ -36,7 +36,7 @@
                      <td class="border-b border-gray-600 px-4 py-2">{{ $event->name }}</td>
                      <td class="border-b border-gray-600 px-4 py-2">{{ $event->category}}</td>
                      <td class="border-b border-gray-600 px-4 py-2">{{ $event->venue}}</td>
-                     <td class="border-b border-gray-600 px-4 py-2">{{ $event->start_date}}</td>
+                     <td class="border-b border-gray-600 px-4 py-2">{{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}</td>
                      <td class="border-b border-gray-600 px-4 py-2 status">{{ $event->status}}</td>
 
                      {{-- ! NEED SUBMiT LOGIC --}}
