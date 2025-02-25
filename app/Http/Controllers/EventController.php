@@ -16,7 +16,6 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
         $user = Auth::user();
 
         // Check if the user is allowed to view all events (admin)
@@ -40,7 +39,10 @@ class EventController extends Controller
     public function create()
     {
         //
-        return view("events.create");
+        if (Gate::allows("create", Event::class)) {
+            return view("events.create");
+        }
+        abort(403, 'Unauthorized action.');
     }
 
     /**
@@ -48,6 +50,10 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+
+        if (Gate::denies('create', Event::class)) {
+            abort(403, 'Unauthorized action.');
+        }
 
         $request->validate([
             "name" => "required|string|max:255",
@@ -103,6 +109,9 @@ class EventController extends Controller
     public function edit(Event $event)
     {
         //
+        if (Gate::denies('update', Event::class)) {
+            abort(403, 'Unauthorized action.');
+        }
         return view("events.edit", compact("event"));
     }
 
@@ -111,6 +120,10 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
+        if (Gate::denies('update', Event::class)) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $request->validate([
             "name" => ["nullable", "string", "max:255"],
             "description" => ["nullable", "string", "max:255"],
@@ -154,7 +167,11 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+
+        if (Gate::denies('delete', Event::class)) {
+            abort(403, 'Unauthorized action.');
+        }
+
         if ($event->image) {
             Storage::disk("public")->delete($event->image);
         }
