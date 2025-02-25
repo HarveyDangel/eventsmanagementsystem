@@ -18,14 +18,21 @@ class EventController extends Controller
     {
         $user = Auth::user();
 
-        // Check if the user is allowed to view all events (admin)
+        // ! Check if the user is allowed to view all events (admin)
+
         if (Gate::allows('viewAny', Event::class)) {
-            $events = Event::orderBy('created_at', 'desc')->paginate(5); // Admin sees all events
+           
+            // * Admin sees all events
+            $events = Event::orderBy('created_at', 'desc')->paginate(5); 
+            return view('events.adminIndex', compact('events'));
+
         } else {
-            $events = Event::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(5); // User sees only their events
+
+            // * User sees only their events
+            $events = Event::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(5); 
+            return view("events.index", compact("events"));
         }
 
-        return view("events.index", compact("events"));
     }
 
     public function eventHistory()
