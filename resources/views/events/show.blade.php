@@ -16,7 +16,6 @@
                     </ol>
                 </nav>
 
-                <!-- Back Button -->
                 <x-primary-button class="self-start mb-5">
                     <a href="{{ route('events.index') }}" class="flex items-center gap-2 text-white hover:text-white">
                         <x-heroicon-o-arrow-uturn-left class="w-5 h-5 inline" />
