@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Feedback;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class FeedbackController extends Controller
 {
@@ -30,7 +31,23 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the input
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'feedback' => 'required|string|min:5|max:1000',
+        ]);
+
+        // Store the feedback
+        Feedback::create([
+            'user_id' => $request->user_id,
+            'rating' => $request->rating,
+            'feedback' => $request->feedback,
+        ]);
+
+        Alert::success('Thank You!', 'Your feedback means the world to us! We appreciate your time and thoughts.');
+
+        // Redirect with success message
+        return redirect()->back()->with('success', 'Thank you for your feedback!');
     }
 
     /**
