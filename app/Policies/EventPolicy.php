@@ -5,8 +5,8 @@ namespace App\Policies;
 use App\Models\Event;
 use App\Models\User;
 
-// * 0 = true
-// ! 1 = false
+// * is_admin === 0 = true
+// ! is_admin === 1 = false
 
 class EventPolicy
 {
