@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 
+
 class EventController extends Controller
 {
+
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -21,17 +25,28 @@ class EventController extends Controller
 
         // Check if the user is allowed to view all events (admin)
         if (Gate::allows('viewAny', Event::class)) {
+
             $events = Event::orderBy('created_at', 'desc')->paginate(5); // Admin sees all events
+            return view("events.adminIndex", compact("events"));
+
         } else {
+
             $events = Event::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(5); // User sees only their events
+            return view("events.index", compact("events"));
         }
 
-        return view("events.index", compact("events"));
     }
 
     public function eventHistory()
     {
-        return view("events.events-history");
+        if (Auth::user()->is_admin === "0" ){
+
+            $events = Event::orderBy('created_at', 'desc')->paginate(5);
+            return view("events.admin-events-history", compact("events"));
+        }
+        else {
+            return view("events.events-history");
+        }
     }
 
     /**
@@ -40,7 +55,10 @@ class EventController extends Controller
     public function create()
     {
         //
-        return view("events.create");
+        if (Gate::allows("create", Event::class)) {
+            return view("events.create");
+        }
+        abort(403, 'Unauthorized action.');
     }
 
     /**
@@ -48,7 +66,9 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-
+        if (Gate::denies('create', Event::class)) {
+            abort(403, 'Unauthorized action.');
+        }
         $request->validate([
             "name" => "required|string|max:255",
             "description" => "required|string|max:255",
@@ -97,12 +117,48 @@ class EventController extends Controller
         abort(403, 'Unauthorized action.');
     }
 
+    public function updateStatus(Request $request, Event $event)
+    {
+        $event->update(['status' => $request->status]);
+        return response()->json(['success' => true]);
+    }
+
+    public function addComment(Request $request, Event $event) {
+        $request->validate([
+            'comment' => 'required|string|max:500',
+        ]);
+    
+        // Update the event's comment field
+        $event->update([
+            'comments' => $request->comment,
+        ]);
+    
+        return response()->json(['success' => true]);
+    }
+
+    public function delete(Request $request, Event $event)
+    {
+        $event->update(['status' => $request->status]);
+        return response()->json(['success' => true]);
+    }
+
+
+    // public function delete($id) {
+    //     $event = Event::findOrFail($id);
+    //     $event->status = 'deleted';
+    //     $event->save();
+    
+    //     return response()->json(['success' => true]);
+    // }
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Event $event)
     {
         //
+        $this->authorize('update', $event);
+
         return view("events.edit", compact("event"));
     }
 
@@ -111,6 +167,7 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
+
         $request->validate([
             "name" => ["nullable", "string", "max:255"],
             "description" => ["nullable", "string", "max:255"],
@@ -155,6 +212,10 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         //
+        if (Gate::denies('delete', Event::class)) {
+            abort(403, 'Unauthorized action.');
+        }
+
         if ($event->image) {
             Storage::disk("public")->delete($event->image);
         }

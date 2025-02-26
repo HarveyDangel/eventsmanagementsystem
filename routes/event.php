@@ -11,7 +11,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
     Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
     Route::patch('/events/{event}', [EventController::class, 'update'])->name('events.update');
+    Route::patch('/events/{event}/update-status', [EventController::class, 'updateStatus']);
+    Route::patch('/events/{event}/add-comment', [EventController::class, 'addComment']);
+    Route::patch('/events/{id}/delete', [EventController::class, 'delete']);
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+
 });
 
 // * Event History Route
