@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
+
+    public function dashboard()
+    {
+        $events = Event::paginate(5);
+        return view('dashboard', compact('events'));
+    }
     /**
      * Display a listing of the resource.
      */
