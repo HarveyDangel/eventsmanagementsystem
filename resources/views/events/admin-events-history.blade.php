@@ -23,7 +23,7 @@
                      <th class="px-4 py-2 text-left">Event Name</th>
                      <th class="px-4 py-2 text-left">Category</th>
                      <th class="px-4 py-2 text-left">Venue</th>
-                     <th class="px-4 py-2 text-left">Date</th>
+                     <th class="px-4 py-2 text-left">Comment</th>
                      <th class="px-4 py-2 text-left">Status</th>
                      <th class="px-4 py-2 text-left">Action</th>
                   </tr>
@@ -36,9 +36,10 @@
                   <td class="border-b border-gray-600 px-4 py-2">{{ $event->name }}</td>
                   <td class="border-b border-gray-600 px-4 py-2">{{ $event->category }}</td>
                   <td class="border-b border-gray-600 px-4 py-2">{{ $event->venue }}</td>
-                  <td class="border-b border-gray-600 px-4 py-2">
+                  <td class="border-b border-gray-600 px-4 py-2">{{ $event->comments }}</td>
+                  {{-- <td class="border-b border-gray-600 px-4 py-2">
                    {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}
-                  </td>
+                  </td> --}}
                   <td class="border-b border-gray-600 px-4 py-2 status font-semibold" id="status-{{ $event->id }}"
                    data-status="{{ $event->status }}">
                    {{ $event->status }}
@@ -78,7 +79,7 @@
                   <span class="text-gray-600">No Image Available</span>
                @endif
             </div>
-            <div>
+            <div class="capitalize">
                <p><strong>Name:</strong> <span id="modal-name"></span></p>
                <p><strong>Category:</strong> <span id="modal-category"></span></p>
                <p><strong>Venue:</strong> <span id="modal-venue"></span></p>

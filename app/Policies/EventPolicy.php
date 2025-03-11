@@ -40,6 +40,7 @@ class EventPolicy
     public function update(User $user, Event $event): bool
     {
         return $user->is_admin === '0' || $user->id === $event->user_id;
+        
     }
 
     /**

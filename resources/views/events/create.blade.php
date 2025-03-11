@@ -46,6 +46,9 @@
                                         <span class="text-4xl">+</span>
                                         <span class="text-md">Upload Image</span>
                                     </div>
+                                    @error('name')
+                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-4">

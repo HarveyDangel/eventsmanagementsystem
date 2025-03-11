@@ -148,6 +148,9 @@
                                             value="{{ $event->duration }}"
                                             class="w-full border border-gray-300 rounded-lg px-3 py-2" readonly>
                                     </div>
+                                    {{-- <input type="text" id="user_id" name="user_id" 
+                                            value="{{ $event->user_id }}"
+                                            class="w-full border border-gray-300 rounded-lg px-3 py-2 hidden" readonly> --}}
                                 </div>
                             </div>
                         </div>
