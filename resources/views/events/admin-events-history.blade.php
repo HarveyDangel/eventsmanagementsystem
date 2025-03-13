@@ -13,7 +13,7 @@
             </ol>
          </nav>
 
-         <div class="mb-5">
+         <div class="mb-5 overflow-x-auto">
             @include('sweetalert::alert')
 
             <table class="w-full min-w-[600px] border-collapse table-auto">
