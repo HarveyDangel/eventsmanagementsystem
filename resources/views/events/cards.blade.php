@@ -1,78 +1,84 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
-         @can ('create', $events)
-         <!-- Add Event Card -->
-         <a href="{{ route('events.create') }}"
-            class="flex flex-col items-center justify-center bg-indigo-400 text-white hover:shadow-lg hover:scale-105 transition-all duration-300 text-center rounded-lg cursor-pointer min-h-40 md:min-h-48 h-full">
-            <span class="text-6xl md:text-6xl">+</span>
-            <h1 class="text-md font-semibold">Create Event</h1>
-         </a>
-         @endcan
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+   @if (auth()->user()->can('create', \App\Models\Event::class))
+      <a href="{{ route('events.create') }}"
+        class="flex flex-col items-center justify-center bg-indigo-400 text-white hover:shadow-lg hover:scale-105 transition-all duration-300 text-center rounded-lg cursor-pointer min-h-40 md:min-h-48 h-full">
+        <span class="text-6xl md:text-6xl">+</span>
+        <h1 class="text-md font-semibold">Create Event</h1>
+      </a>
 
-         @include('sweetalert::alert')
+   @endif
+   <!-- Add Event Card -->
 
-         <!-- Event Cards -->
-         @foreach ($events as $event)
-          <div
-            class="relative bg-white shadow-md rounded-lg flex flex-col h-full hover:shadow-lg hover:scale-105 transition-all duration-300">
 
-            <!-- Clickable Area for Navigation -->
-            <a href="{{ route('events.show', $event->id) }}" class="flex flex-col flex-grow">
-               <!-- Image Section -->
-               <div
-                 class="bg-gray-300 h-40 sm:h-48 flex items-center justify-center relative rounded-t-lg overflow-hidden">
-                 @if ($event->image)
-                <img src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->title }}"
-                  class="w-full h-full object-cover rounded-t-lg">
-             @else
-             <span class="text-lg md:text-xl font-bold text-gray-500">No Image</span>
-          @endif
-               </div>
+   @include('sweetalert::alert')
 
-               <!-- Event Details -->
-               <div class="p-4 flex-grow">
-                 <p class="font-bold text-xs md:text-sm break-words whitespace-normal">
-                   Title: {{ $event->name }}
-                 </p>
-                 <p class="text-xs text-gray-500">Venue: {{ $event->venue }}</p>
-                 <p class="text-xs text-gray-500">Start at:
-                   {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}
-                 </p>
-               </div>
-            </a>
+   <!-- Event Cards -->
+   @foreach ($events as $event)
+      <div
+        class="relative bg-white shadow-md rounded-lg flex flex-col h-full hover:shadow-lg hover:scale-105 transition-all duration-300">
 
-            @can('create', $events)
-            <!-- Three Dots Button -->
-            <button id="button-{{ $event->id }}" onclick="toggleDropdown(event, {{ $event->id }})"
-               class="absolute top-2 right-2 px-2 py-0 text-white text-2xl border border-gray-400 rounded-md bg-gray-800 hover:bg-gray-700 focus:outline-none">
-               &#x22EF;
-            </button>
-            @endcan
-            <!-- Dropdown Menu (Inside Card) -->
-            <div id="dropdown-{{ $event->id }}"
-               class="dropdown-menu hidden absolute top-12 right-2 bg-white shadow-md rounded-lg w-32 sm:w-36 z-50 py-2 border border-gray-200">
-
-               <!-- Edit Button -->
-               <a href="{{ route('events.edit', $event->id) }}"
-                 class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100">
-                 <x-heroicon-o-pencil-square class="w-5 h-5 text-blue-500" />
-                 <span>Edit</span>
-               </a>
-
-               <!-- Delete Button -->
-               <form id="delete-form-{{ $event->id }}" action="{{ route('events.destroy', $event->id) }}" method="POST"
-                 class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 text-red-500">
-                 @csrf
-                 @method('DELETE')
-                 <x-heroicon-o-trash class="w-5 h-5" />
-                 <button type="button" class="text-red-500" onclick="confirmDelete({{ $event->id }})">Delete</button>
-               </form>
-            </div>
+        <!-- Clickable Area for Navigation -->
+        <a href="{{ route('events.show', $event->id) }}" class="flex flex-col flex-grow">
+          <!-- Image Section -->
+          <div class="bg-gray-300 h-40 sm:h-48 flex items-center justify-center relative rounded-t-lg overflow-hidden">
+            @if ($event->image)
+            <img src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->title }}"
+               class="w-full h-full object-cover rounded-t-lg">
+         @else
+         <span class="text-lg md:text-xl font-bold text-gray-500">No Image</span>
+      @endif
           </div>
-       @endforeach
+
+          <!-- Event Details -->
+          <div class="p-4 flex-grow">
+            <p class="font-bold text-xs md:text-sm break-words whitespace-normal">
+               Title: {{ $event->name }}
+            </p>
+            <p class="text-xs text-gray-500">Venue: {{ $event->venue }}</p>
+            <p class="text-xs text-gray-500">Start at:
+               {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}
+            </p>
+          </div>
+        </a>
+
+        @if (auth()->user()->can('create', \App\Models\Event::class))
+         <!-- Three Dots Button -->
+         <button id="button-{{ $event->id }}" onclick="toggleDropdown(event, {{ $event->id }})"
+           class="absolute top-2 right-2 px-2 py-0 text-white text-2xl border border-gray-400 rounded-md bg-gray-800 hover:bg-gray-700 focus:outline-none">
+           &#x22EF;
+         </button>
+
+         
+         
+         <!-- Dropdown Menu (Inside Card) -->
+        <div id="dropdown-{{ $event->id }}"
+          class="dropdown-menu hidden absolute top-12 right-2 bg-white shadow-md rounded-lg w-32 sm:w-36 z-50 py-2 border border-gray-200">
+
+          <!-- Edit Button -->
+          <a href="{{ route('events.edit', $event->id) }}"
+             class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100">
+             <x-heroicon-o-pencil-square class="w-5 h-5 text-blue-500" />
+             <span>Edit</span>
+            </a>
+            
+            @if (auth()->user()->can('delete', $event))
+            <form id="delete-form-{{ $event->id }}" action="{{ route('events.destroy',[$event->id]) }}" method="POST"
+               class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 text-red-500">
+               @csrf
+               @method('DELETE')
+               <x-heroicon-o-trash class="w-5 h-5" />
+               <button type="button" class="text-red-500" onclick="confirmDelete({{ $event->id }})">Delete</button>
+            </form>
+            @endif
+            <!-- Delete Button -->
+         </div>
+         @endif
       </div>
-      {{ $events->links() }}
+   @endforeach
+</div>
+{{ $events->links() }}
 <script>
    function confirmDelete(id) {
       Swal.fire({
