@@ -13,10 +13,10 @@
             </ol>
          </nav>
 
-         <div class="mb-5">
+         <div class="mb-5 overflow-x-auto">
             @include('sweetalert::alert')
 
-            <table class="w-full min-w-[600px] border-collapse table-auto">
+            <table class="w-full min-w-[600px] border-collapse table-auto table-responsive">
                <thead class="border-b-2 border-gray-800">
                   <tr>
                      <th class="px-4 py-2 text-left">ID</th>
