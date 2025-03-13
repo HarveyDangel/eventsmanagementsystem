@@ -30,7 +30,7 @@
                 </ol>
             </nav>
                 <thead>
-                    <tr class="bg-gray-100">
+                    <tr class="bg-indigo-500 text-white">
                         <th class="border border-gray-300 px-4 py-2">ID</th>
                         <th class="border border-gray-300 px-4 py-2">Event Name</th>
                         <th class="border border-gray-300  px-2 py-2 w-6">Description</th>
