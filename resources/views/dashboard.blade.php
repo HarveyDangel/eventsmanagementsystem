@@ -1,8 +1,8 @@
 <x-app-layout>
-    <div class="flex flex-col items-center mt-4 px-4">
+    <div class="flex flex-col justify-center mt-4 px-4 w-full">
         <!-- Cards Section -->
-        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-40">
-            <div class="bg-purple-400 text-white py-5 px-8 rounded-lg shadow-md text-center">
+        <div class="flex flex-col gap-3 w-full md:flex-row md:justify-between lg:max-w-6xl mx-auto">
+            <div class="bg-purple-400 text-white py-5 px-8 rounded-lg shadow-lg text-center">
                 <span class="text-lg font-bold">2</span>
                 <span>Completed Events</span>
             </div>
@@ -17,7 +17,7 @@
         </div>
 
         <!-- Table Section -->
-        <div class="mt-6 w-full px-4 overflow-x-auto">
+        <div class="mt-6 w-full p-5 overflow-x-auto shadow-lg rounded-lg lg:max-w-6xl mx-auto">
             <table class="w-full min-w-[600px] border-collapse border border-gray-300 shadow-md">
                 <thead>
                     <tr class="bg-gray-100">
