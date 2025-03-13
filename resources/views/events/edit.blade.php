@@ -173,6 +173,15 @@
     </div>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const startDateInput = document.getElementById("start_date");
+            const endDateInput = document.getElementById("end_date");
+
+            startDateInput.addEventListener("change", function() {
+                endDateInput.min = startDateInput.value; // Set the minimum selectable date for end_date
+            });
+        });
+
         function previewImage(event) {
             const imagePreview = document.getElementById('imagePreview');
             const uploadOverlay = document.getElementById('uploadOverlay');

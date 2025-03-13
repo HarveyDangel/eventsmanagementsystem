@@ -9,9 +9,16 @@ class Feedback extends Model
 {
     //
     use HasFactory;
+
+    protected $table = 'systemfeedbacks';
     protected $fillable = [
         "user_id",
         "feedback",
-        "status",
+        "rating",
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

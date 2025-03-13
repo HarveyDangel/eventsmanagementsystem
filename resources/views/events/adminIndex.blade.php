@@ -13,8 +13,7 @@
             </ol>
          </nav>
 
-         <div class=" mb-5">
-
+         <div class="mb-5">
             @include('sweetalert::alert')
 
             <table class="w-full min-w-[600px] border-collapse table-auto">
@@ -31,144 +30,140 @@
                </thead>
                <tbody>
                   @foreach ($events as $event)
-                  <tr class="text-left capitalize">
-                     <td class="border-b border-gray-600 px-4 py-2">{{ $event->id}}</td>
-                     <td class="border-b border-gray-600 px-4 py-2">{{ $event->name }}</td>
-                     <td class="border-b border-gray-600 px-4 py-2">{{ $event->category}}</td>
-                     <td class="border-b border-gray-600 px-4 py-2">{{ $event->venue}}</td>
-                     <td class="border-b border-gray-600 px-4 py-2">{{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}</td>
-                     <td class="border-b border-gray-600 px-4 py-2 status">{{ $event->status}}</td>
+                 <tr class="text-left capitalize">
+                   <td class="border-b border-gray-600 px-4 py-2">{{ $event->id }}</td>
+                   <td class="border-b border-gray-600 px-4 py-2">{{ $event->name }}</td>
+                   <td class="border-b border-gray-600 px-4 py-2">{{ $event->category }}</td>
+                   <td class="border-b border-gray-600 px-4 py-2">{{ $event->venue }}</td>
+                   <td class="border-b border-gray-600 px-4 py-2">
+                     {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}
+                   </td>
+                   <td class="border-b border-gray-600 px-4 py-2 status font-semibold" id="status-{{ $event->id }}"
+                     data-status="{{ $event->status }}">
+                     {{ $event->status }}
+                   </td>
 
-                     {{-- ! NEED SUBMiT LOGIC --}}
-                     <td class="border-b border-gray-600 px-4 py-2">
-                        <form action="{{route('events.update', $event)}}">
-                           @csrf
-                           @method('PATCH')
-                           <div class="flex gap-3">
-                              <x-heroicon-o-check-circle class="size-8 text-green-700"/>
-                              <x-heroicon-o-x-circle class="size-8 text-red-700"/>
-                              <x-heroicon-o-chat-bubble-bottom-center-text class="size-8 text-indigo-700"/>
-                           </div>
-                        </form>
-                     </td>
+                   <td class="border-b border-gray-600 px-4 py-2">
+                     <div class="flex gap-3">
+                        <button onclick="updateStatus({{ $event->id }}, 'Approved')">
+                          <x-heroicon-o-check-circle class="size-8 text-green-700 cursor-pointer" />
+                        </button>
+                        <button onclick="updateStatus({{ $event->id }}, 'Declined')">
+                          <x-heroicon-o-x-circle class="size-8 text-red-700 cursor-pointer" />
+                        </button>
+                        <button onclick="openCommentModal({{ $event->id }})">
+                          <x-heroicon-o-chat-bubble-bottom-center-text
+                            class="size-8 text-indigo-700 cursor-pointer" />
+                        </button>
+                     </div>
+                   </td>
                  </tr>
-                 @endforeach
+              @endforeach
                </tbody>
             </table>
 
             {{ $events->links() }}
-
-            <!-- Event Cards -->
-            {{-- 
-            <div class="relative bg-white shadow-md rounded-lg flex flex-col h-full hover:shadow-lg hover:scale-105 transition-all duration-300">
-
-               <!-- Clickable Area for Navigation -->
-               <a href="{{ route('events.show', $event->id) }}" class="flex flex-col flex-grow">
-                  <!-- Image Section -->
-                  <div
-                     class="bg-gray-300 h-40 sm:h-48 flex items-center justify-center relative rounded-t-lg overflow-hidden">
-                     @if ($event->image)
-                     <img src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->title }}"
-                        class="w-full h-full object-cover rounded-t-lg">
-                     @else
-                     <span class="text-lg md:text-xl font-bold text-gray-500">No Image</span>
-                     @endif
-                  </div>
-
-                  <!-- Event Details -->
-                  <div class="p-4 flex-grow">
-                     <p class="font-bold text-xs md:text-sm break-words whitespace-normal">
-                        Title:
-                     </p>
-                     <p class="text-xs text-gray-500">Venue: {{ $event->venue }}</p>
-                     <p class="text-xs text-gray-500">Start at:
-                        {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}
-                     </p>
-                  </div>
-               </a>
-
-               <!-- Three Dots Button -->
-               <button id="button-{{ $event->id }}" onclick="toggleDropdown(event, {{ $event->id }})"
-                  class="absolute top-2 right-2 px-2 py-0 text-white text-2xl border border-gray-400 rounded-md bg-gray-800 hover:bg-gray-700 focus:outline-none">
-                  &#x22EF;
-               </button>
-
-               <!-- Dropdown Menu (Inside Card) -->
-               <div id="dropdown-{{ $event->id }}"
-                  class="dropdown-menu hidden absolute top-12 right-2 bg-white shadow-md rounded-lg w-32 sm:w-36 z-50 py-2 border border-gray-200">
-
-                  <!-- Edit Button -->
-                  <a href="{{ route('events.edit', $event->id) }}"
-                     class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100">
-                     <x-heroicon-o-pencil-square class="w-5 h-5 text-blue-500" />
-                     <span>Edit</span>
-                  </a>
-
-                  <!-- Delete Button -->
-                  <form id="delete-form-{{ $event->id }}" action="{{ route('events.destroy', $event->id) }}"
-                     method="POST" class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 text-red-500">
-                     @csrf
-                     @method('DELETE')
-                     <x-heroicon-o-trash class="w-5 h-5" />
-                     <button type="button" class="text-red-500"
-                        onclick="confirmDelete({{ $event->id }})">Delete</button>
-                  </form>
-               </div>
-            </div>
-            --}}
          </div>
       </div>
    </div>
+
+   <!-- MODAL FOR COMMENTS -->
+   <div id="commentModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+      <div class="bg-white p-6 rounded-lg w-96">
+         <h2 class="text-lg font-semibold mb-4">Add Comment</h2>
+         <textarea id="commentText" class="w-full border rounded p-2" rows="4"
+            placeholder="Write your comment here..."></textarea>
+         <div class="flex justify-end mt-4">
+            <button class="px-4 py-2 bg-gray-500 text-white rounded mr-2" onclick="closeCommentModal()">Cancel</button>
+            <button class="px-4 py-2 bg-indigo-600 text-white rounded" onclick="submitComment()">Submit</button>
+         </div>
+         <input type="hidden" id="eventId">
+      </div>
+   </div>
+
    <script>
-      function confirmDelete(id) {
-         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'Cancel'
-         }).then((result) => {
-            if (result.isConfirmed) {
-               // If confirmed, submit the form
-               document.getElementById('delete-form-' + id).submit();
-            }
-         });
-      }
-   </script>
-   <script>
-      function toggleDropdown(event, id) {
-         event.stopPropagation(); // Prevents navigation
-         let dropdown = document.getElementById('dropdown-' + id);
-         let button = document.getElementById('button-' + id);
-
-         // Close other open dropdowns
-         document.querySelectorAll('.dropdown-menu').forEach(el => {
-            if (el !== dropdown) el.classList.add('hidden');
-         });
-
-         dropdown.classList.toggle('hidden');
-
-         // Add event listeners for closing when cursor leaves
-         button.addEventListener("mouseleave", function () {
-            setTimeout(() => {
-               if (!dropdown.matches(':hover')) dropdown.classList.add('hidden');
-            }, 200);
-         });
-
-         dropdown.addEventListener("mouseleave", function () {
-            setTimeout(() => {
-               if (!button.matches(':hover')) dropdown.classList.add('hidden');
-            }, 200);
-         });
+      
+      // Function to Update Status
+      function updateStatus(eventId, newStatus) {
+         fetch(`/events/${eventId}/update-status`, {
+            method: "PATCH",
+            headers: {
+               "Content-Type": "application/json",
+               "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({ status: newStatus })
+         })
+            .then(response => response.json())
+            .then(data => {
+               if (data.success) {
+                  let statusElement = document.getElementById(`status-${eventId}`);
+                  statusElement.innerText = newStatus;
+                  updateStatusColor(statusElement, newStatus); // Call function to update color
+                  Swal.fire("Updated!", `Event status changed to ${newStatus}.`, "success");
+               } else {
+                  Swal.fire("Error!", "Something went wrong.", "error");
+               }
+            })
+            .catch(error => console.error("Error:", error));
       }
 
-      // Close dropdown when clicking anywhere outside
-      document.addEventListener("click", function () {
-         document.querySelectorAll('.dropdown-menu').forEach(el => el.classList.add('hidden'));
+      // Function to update status text color dynamically
+      function updateStatusColor(element, status) {
+         element.classList.remove("text-yellow-500", "text-green-500", "text-red-500"); // Remove old classes
+         if (status.toLowerCase() === "pending") {
+            element.classList.add("text-yellow-500");
+         } else if (status.toLowerCase() === "approved") {
+            element.classList.add("text-green-500");
+         } else if (status.toLowerCase() === "declined") {
+            element.classList.add("text-red-500");
+         }
+      }
+
+      // Apply colors on page load
+      document.addEventListener("DOMContentLoaded", function () {
+         document.querySelectorAll(".status").forEach(element => {
+            updateStatusColor(element, element.dataset.status);
+         });
       });
+
+      // Open Comment Modal
+      function openCommentModal(eventId) {
+         document.getElementById("eventId").value = eventId;
+         document.getElementById("commentModal").classList.remove("hidden");
+      }
+
+      // Close Comment Modal
+      function closeCommentModal() {
+         document.getElementById("commentModal").classList.add("hidden");
+         document.getElementById("commentText").value = "";
+      }
+
+      // Submit Comment
+      // Submit Comment
+      function submitComment() {
+         let eventId = document.getElementById("eventId").value;
+         let comment = document.getElementById("commentText").value;
+
+         fetch(`/events/${eventId}/add-comment`, {
+            method: "PATCH",  // Use PATCH to update the event
+            headers: {
+               "Content-Type": "application/json",
+               "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({ comment: comment })  // Corrected object key
+         })
+            .then(response => response.json())
+            .then(data => {
+               if (data.success) {
+                  Swal.fire("Success!", "Comment added successfully.", "success");
+                  closeCommentModal();
+               } else {
+                  Swal.fire("Error!", "Could not add comment.", "error");
+               }
+            })
+            .catch(error => console.error("Error:", error));
+      }
+
    </script>
 
 </x-app-layout>
