@@ -20,8 +20,8 @@
             <div class="mb-6 text-center flex justify-center gap-32">
                 @foreach (['' => 'All', 'Cultural' => 'Cultural', 'Seminar' => 'Seminar', 'Sports' => 'Sports', 'Others' => 'Others'] as $key => $label)
                     <button @click="selectedCategory = '{{ $key }}'"
-                        :class="selectedCategory === '{{ $key }}' ? 'bg-indigo-500 text-white' : 'bg-gray-200'"
-                        class="px-4 py-2 rounded-lg font-semibold transition hover:bg-indigo-500">
+                        :class="selectedCategory === '{{ $key }}' ? ' text-indigo-500' : 'text-gray-500'"
+                        class="px-4 py-2 rounded-lg font-semibold transition hover:text-indigo-200">
                         {{ $label }}
                     </button>
                 @endforeach
@@ -125,7 +125,8 @@
 
     .animate-scrollWave1 {
         animation: scrollWave1 10s linear infinite;
-        top: 35%;
+        top: 3
+        5%;
         transform: translateY(-50%);
     }
 
