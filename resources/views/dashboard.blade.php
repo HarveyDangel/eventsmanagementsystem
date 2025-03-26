@@ -26,7 +26,7 @@
                 <ol class="flex space-x-2 text-gray-600">
                     <li>Events</li>
                     <li>/</li>
-                    <li class="text-gray-800 font-semibold">List</li>
+                    <li class="text-gray-800 font-semibold">Lists</li>
                 </ol>
             </nav>
                 <thead>
