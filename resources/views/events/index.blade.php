@@ -18,7 +18,7 @@
                 <a href="{{ route('events.create') }}"
                     class="flex flex-col items-center justify-center bg-indigo-400 text-white hover:shadow-lg hover:scale-105 transition-all duration-300 text-center rounded-lg cursor-pointer min-h-40 md:min-h-48 h-full">
                     <span class="text-6xl md:text-6xl">+</span>
-                    <h1 class="text-md font-semibold">Create Event</h1>
+                    <h1 class="text-md font-semibold">Create an Event</h1>
                 </a>
 
                 @include('sweetalert::alert')
