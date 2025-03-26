@@ -67,7 +67,7 @@
 
                     <!-- Dropdown Menu -->
                     <div x-show="open" @click.away="open = false"
-                        class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-50">
+                        class="absolute right-0 mt-2 w-48 bg-indigo-700 border rounded-md shadow-lg z-50">
                         <a href="{{ route('profile.edit') }}"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                             {{ __('Profile') }}

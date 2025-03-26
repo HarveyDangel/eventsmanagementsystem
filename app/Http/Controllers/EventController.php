@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Auth;
 class EventController extends Controller
 {
 
-    use AuthorizesRequests;
+    public function dashboard()
+    {
+        $events = Event::paginate(5);
+        return view('dashboard', compact('events'));
+    }
     /**
      * Display a listing of the resource.
      */
@@ -122,40 +126,6 @@ class EventController extends Controller
         }
         abort(403, 'Unauthorized action.');
     }
-
-    public function updateStatus(Request $request, Event $event)
-    {
-        $event->update(['status' => $request->status]);
-        return response()->json(['success' => true]);
-    }
-
-    public function addComment(Request $request, Event $event) {
-        $request->validate([
-            'comment' => 'required|string|max:500',
-        ]);
-    
-        // Update the event's comment field
-        $event->update([
-            'comments' => $request->comment,
-        ]);
-    
-        return response()->json(['success' => true]);
-    }
-
-    public function delete(Request $request, Event $event)
-    {
-        $event->update(['status' => $request->status]);
-        return response()->json(['success' => true]);
-    }
-
-
-    // public function delete($id) {
-    //     $event = Event::findOrFail($id);
-    //     $event->status = 'deleted';
-    //     $event->save();
-    
-    //     return response()->json(['success' => true]);
-    // }
 
     /**
      * Show the form for editing the specified resource.
