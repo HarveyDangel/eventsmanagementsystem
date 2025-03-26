@@ -21,7 +21,7 @@ return new class extends Migration
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->string('duration');
-            $table->enum('status', ['pending', 'approved', 'declined'])->default('pending');
+            $table->enum('status', ['pending', 'approved', 'declined', 'cancelled', 'ongoing', 'ended'])->default('pending');
             $table->text('comments')->nullable(true);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();

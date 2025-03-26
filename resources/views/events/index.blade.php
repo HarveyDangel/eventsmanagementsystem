@@ -21,6 +21,18 @@
                     <h1 class="text-md font-semibold">Create an Event</h1>
                 </a>
 
+                {{-- ! is_admin === 0 = true --}}
+
+                @can('create', App\Models\Event::class)
+
+                    <a href="{{ route('events.create') }}"
+                        class="flex flex-col items-center justify-center bg-indigo-400 text-white hover:shadow-lg hover:scale-105 transition-all duration-300 text-center rounded-lg cursor-pointer min-h-40 md:min-h-48 h-full">
+                        <span class="text-6xl md:text-6xl">+</span>
+                        <h1 class="text-md font-semibold">Create Event</h1>
+                    </a>
+
+                @endcan
+
                 @include('sweetalert::alert')
 
                 <!-- Event Cards -->
@@ -48,7 +60,8 @@
                                 </p>
                                 <p class="text-xs text-gray-500">Venue: {{ $event->venue }}</p>
                                 <p class="text-xs text-gray-500">Start at:
-                                    {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}</p>
+                                    {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}
+                                </p>
                             </div>
                         </a>
 
@@ -70,8 +83,8 @@
                             </a>
 
                             <!-- Delete Button -->
-                            <form id="delete-form-{{ $event->id }}"
-                                action="{{ route('events.destroy', $event->id) }}" method="POST"
+                            <form id="delete-form-{{ $event->id }}" action="{{ route('events.destroy', $event->id) }}"
+                                method="POST"
                                 class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 text-red-500">
                                 @csrf
                                 @method('DELETE')
@@ -119,13 +132,13 @@
             dropdown.classList.toggle('hidden');
 
             // Add event listeners for closing when cursor leaves
-            button.addEventListener("mouseleave", function() {
+            button.addEventListener("mouseleave", function () {
                 setTimeout(() => {
                     if (!dropdown.matches(':hover')) dropdown.classList.add('hidden');
                 }, 200);
             });
 
-            dropdown.addEventListener("mouseleave", function() {
+            dropdown.addEventListener("mouseleave", function () {
                 setTimeout(() => {
                     if (!button.matches(':hover')) dropdown.classList.add('hidden');
                 }, 200);
@@ -133,7 +146,7 @@
         }
 
         // Close dropdown when clicking anywhere outside
-        document.addEventListener("click", function() {
+        document.addEventListener("click", function () {
             document.querySelectorAll('.dropdown-menu').forEach(el => el.classList.add('hidden'));
         });
     </script>
