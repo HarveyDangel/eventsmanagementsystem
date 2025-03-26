@@ -19,6 +19,32 @@ class EventController extends Controller
         $events = Event::paginate(5);
         return view('dashboard', compact('events'));
     }
+
+    public function updateStatus(Request $request, Event $event)
+    {
+        $event->update(['status' => $request->status]);
+        return response()->json(['success' => true]);
+    }
+
+    public function addComment(Request $request, Event $event) {
+        $request->validate([
+            'comment' => 'required|string|max:500',
+        ]);
+    
+        // Update the event's comment field
+        $event->update([
+            'comments' => $request->comment,
+        ]);
+    
+        return response()->json(['success' => true]);
+    }
+
+    public function delete(Request $request, Event $event)
+    {
+        $event->update(['status' => $request->status]);
+        return response()->json(['success' => true]);
+    }
+
     /**
      * Display a listing of the resource.
      */
