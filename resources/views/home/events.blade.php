@@ -67,7 +67,7 @@
                 @endforeach
             </div>
         @else
-            <p class="text-center text-gray-600">No upcoming events.</p>
+            <p class="text-center text-gray-600">No upcoming events at the moment.</p>
         @endif
     </section>
 
