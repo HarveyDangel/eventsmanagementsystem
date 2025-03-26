@@ -65,7 +65,7 @@
    </div>
 
    <!-- MODAL FOR EVENT DETAILS -->
-   <div id="event-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+   {{-- <div id="event-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <div class="bg-white p-6 rounded-lg shadow-lg max-w-6xl">
          <h2 class="text-xl font-bold mb-4">Event Details</h2>
          <div class="flex gap-3">
@@ -155,5 +155,5 @@
             }
          });
       }
-   </script>
+   </script> --}}
 </x-app-layout>
