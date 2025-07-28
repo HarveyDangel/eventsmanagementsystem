@@ -27,6 +27,8 @@ class FeedbackController extends Controller
         return view('feedback.create');
     }
 
+    
+
     /**
      * Store a newly created resource in storage.
      */

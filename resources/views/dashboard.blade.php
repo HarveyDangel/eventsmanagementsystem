@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="flex flex-col justify-center mt-4 px-4 w-full">
         <!-- Cards Section -->
-        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-40">
+        <div class="flex flex-col sm:flex-row justify-between space-y-4 sm:space-y-0 sm:space-x-40">
             <div class="bg-indigo-600 text-white py-5 px-8 rounded-lg shadow-md text-center">
                 <span class="text-lg font-bold">{{ $events->where('status', 'approved')->count() }}</span>
                 <span>Completed Events</span>
