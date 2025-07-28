@@ -1,10 +1,10 @@
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-6xl place-self-center mx-auto">
-            <div class=" md:flex md:justify-between">
+        <div class="max-w-6xl mx-auto">
+            <div class="w-100 flex flex-col md:flex-row md:justify-between gap-4">
                 {{-- Counter --}}
-                <div class="p-6 text-gray-900 bg-white shadow-md rounded-2xl">
-                    <div class="flex justify-between items-center gap-3">
+                <div class="p-6 text-gray-900 bg-white shadow-md rounded-2xl grow">
+                    <div class="flex items-center gap-3">
                         {{-- ICON --}}
                         <div>
 
@@ -24,8 +24,8 @@
                     </div>
                 </div>
 
-                <div class="p-6 text-gray-900 bg-white shadow-md rounded-2xl">
-                    <div class="flex justify-between items-center gap-3">
+                <div class="p-6 text-gray-900 bg-white shadow-md rounded-2xl grow">
+                    <div class="flex items-center gap-3">
                         {{-- ICON --}}
                         <div>
 
@@ -45,8 +45,8 @@
                     </div>
                 </div>
 
-                <div class="p-6 text-gray-900 bg-white shadow-md rounded-2xl">
-                    <div class="flex justify-between items-center gap-3">
+                <div class="p-6 text-gray-900 bg-white shadow-md rounded-2xl grow">
+                    <div class="flex items-center gap-3">
                         {{-- ICON --}}
                         <div>
 
@@ -65,8 +65,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-6 text-gray-900 bg-white shadow-md rounded-2xl">
-                    <div class="flex justify-between items-center gap-3">
+                <div class="p-6 text-gray-900 bg-white shadow-md rounded-2xl grow">
+                    <div class="flex items-center gap-3">
                         {{-- ICON --}}
                         <div>
 

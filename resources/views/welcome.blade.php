@@ -31,7 +31,8 @@
                     @include('home.events')
 
                     @include('home.feedback')
-
+                    <br>
+                    <br>
                     @include('home.about')
                 </main>
             </div>

@@ -48,11 +48,11 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function welcome()
-    {
-        $events = Event::orderBy('start_date', 'asc')->get(); // Adjust limit as needed
-        return view('welcome', compact('events'));
-    }
+    // public function welcome()
+    // {
+    //     $events = Event::orderBy('start_date', 'asc')->get(); // Adjust limit as needed
+    //     return view('welcome', compact('events'));
+    // }
 
     public function index()
     {

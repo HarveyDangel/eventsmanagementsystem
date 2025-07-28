@@ -125,8 +125,7 @@
 
     .animate-scrollWave1 {
         animation: scrollWave1 10s linear infinite;
-        top: 3
-        5%;
+        top: 35%;
         transform: translateY(-50%);
     }
 
