@@ -1,16 +1,16 @@
 <x-guest-layout>
 
-    <div class="grid grid-cols-2">
+    <div class="lg:grid lg:grid-cols-2">
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <div class="flex justify-center items-center">
-            <form method="POST" action="{{ route('login') }}" class="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
+            <form method="POST" action="{{ route('login') }}" class="w-full max-w-md p-8 bg-white md:bg-none rounded-lg">
                 @csrf
 
                 <div class="text-center">
                     <h1 class="text-xl">Welcome!</h1>
-                    <p class="text-sm mb-2">Please logged in to your account.</p>
+                    <p class="text-sm mb-2">Log in to your account.</p>
                 </div>
                 <!-- Email Address -->
                 <div class="mt-4">
@@ -68,9 +68,9 @@
             </form>
         </div>
 
-        <div class="bg-indigo-800 flex justify-center items-center text-white px-5 ">
-            <h2 class="text-4xl font-bold text-left leading-tight">
-                SEAMLESSLY PLAN, <br> ORGANIZE,<br> AND MANAGE<br> YOUR EVENTS
+        <div class="lg:bg-indigo-800 lg:flex lg:mx-auto lg:items-center lg:text-white px-8 hidden">
+            <h2 class="text-3xl font-bold text-left leading-tight uppercase">
+                welcome back, your events are waiting for you! <br><span class="text-5xl">Let's go</span>
             </h2>
         </div>
     </div>
