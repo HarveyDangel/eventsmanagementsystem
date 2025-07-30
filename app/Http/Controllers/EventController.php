@@ -81,7 +81,8 @@ class EventController extends Controller
             return view("events.admin-events-history", compact("events"));
         }
         else {
-            return view("events.events-history");
+            $events = Event::where('user_id', Auth::id())->orderBy('created_at', 'desc')->paginate(5);
+            return view("events.events-history",compact("events"));
         }
     }
 

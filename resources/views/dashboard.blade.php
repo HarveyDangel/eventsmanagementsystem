@@ -83,35 +83,35 @@
                         <table class="w-full min-w-[600px] border-collapse border border-gray-300 shadow-md">
                             <thead>
                                 <tr class="bg-indigo-500 text-white">
-                                    <th class="border border-gray-300 px-2 py-2">ID</th>
-                                    <th class="border border-gray-300 px-4 py-2">Event Name</th>
-                                    <th class="border border-gray-300 px-4 py-2">Description</th>
-                                    <th class="border border-gray-300 px-4 py-2">Category</th>
-                                    <th class="border border-gray-300 px-4 py-2">Venue</th>
-                                    <th class="border border-gray-300 px-4 py-2">Date</th>
-                                    <th class="border border-gray-300 px-4 py-2">Status</th>
+                                    <th class="border border-gray-300 p-3 text-left">ID</th>
+                                    <th class="border border-gray-300 p-3 text-left">Event Name</th>
+                                    <th class="border border-gray-300 p-3 text-left">Description</th>
+                                    <th class="border border-gray-300 p-3 text-left">Category</th>
+                                    <th class="border border-gray-300 p-3 text-left">Venue</th>
+                                    <th class="border border-gray-300 p-3 text-left">Date</th>
+                                    <th class="border border-gray-300 p-3 text-left">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($events as $event)
                                     <tr class="text-center">
-                                        <td class="border border-gray-300 px-2 py-2">{{ $event->id }}</td>
-                                        <td class="border border-gray-300 px-4 py-2">{{ $event->name }}</td>
-                                        <td class="border border-gray-300 px-4 py-2 text-left">
+                                        <td class="border border-gray-300 p-3 text-left">{{ $event->id }}</td>
+                                        <td class="border border-gray-300 p-3 text-left">{{ $event->name }}</td>
+                                        <td class="border border-gray-300 p-3 text-left">
                                             {{ Str::limit($event->description, 50) }}
                                         </td>
-                                        <td class="border border-gray-300 px-4 py-2">{{ $event->category }}</td>
-                                        <td class="border border-gray-300 px-4 py-2">{{ $event->venue }}</td>
-                                        <td class="border border-gray-300 px-4 py-2">
+                                        <td class="border border-gray-300 p-3 text-left">{{ $event->category }}</td>
+                                        <td class="border border-gray-300 p-3 text-left">{{ $event->venue }}</td>
+                                        <td class="border border-gray-300 p-3 text-left">
                                             {{ \Carbon\Carbon::parse($event->date)->format('m/d/Y') }}
                                         </td>
-                                        <td class="border border-gray-300 px-4 py-2">
+                                        <td class="border border-gray-300 p-3 text-left">
                                             @if ($event->status == 'pending')
-                                                <span class="text-yellow-400 px-2 py-1 rounded-md">Pending</span>
+                                                <span class="text-yellow-400">Pending</span>
                                             @elseif ($event->status == 'approved')
-                                                <span class="text-green-500 px-2 py-1 rounded-md">Accepted</span>
+                                                <span class="text-green-500">Accepted</span>
                                             @elseif ($event->status == 'declined')
-                                                <span class="text-red-500 px-2 py-1 rounded-md">Declined</span>
+                                                <span class="text-red-500">Declined</span>
                                             @endif
                                         </td>
                                     </tr>
