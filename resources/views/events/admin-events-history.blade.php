@@ -30,31 +30,36 @@
                </thead>
                <tbody>
                   @foreach ($events as $event)
-                 @if($event->status !== 'deleted') {{-- Hide deleted events --}}
-                <tr class="text-left capitalize" id="event-{{ $event->id }}">
-                  <td class="border-b border-gray-600 px-4 py-2">{{ $event->id }}</td>
-                  <td class="border-b border-gray-600 px-4 py-2">{{ $event->name }}</td>
-                  <td class="border-b border-gray-600 px-4 py-2">{{ $event->category }}</td>
-                  <td class="border-b border-gray-600 px-4 py-2">{{ $event->venue }}</td>
-                  <td class="border-b border-gray-600 px-4 py-2">
-                   {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}
-                  </td>
-                  <td class="border-b border-gray-600 px-4 py-2 status font-semibold" id="status-{{ $event->id }}"
-                   data-status="{{ $event->status }}">
-                   {{ $event->status }}
-                  </td>
+                    @if($event->status !== 'deleted') {{-- Hide deleted events --}}
+                   <tr class="text-left capitalize" id="event-{{ $event->id }}">
+                     <td class="border-b border-gray-600 px-4 py-2">{{ $event->id }}</td>
+                     <td class="border-b border-gray-600 px-4 py-2">{{ $event->name }}</td>
+                     <td class="border-b border-gray-600 px-4 py-2">{{ $event->category }}</td>
+                     <td class="border-b border-gray-600 px-4 py-2">{{ $event->venue }}</td>
+                     <td class="border-b border-gray-600 px-4 py-2">
+                      {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}
+                     </td>
+                     <td class="border-b border-gray-600 px-4 py-2 status font-semibold">
+                      @if ($event->status == 'pending')
+                     <span class="text-yellow-400">Pending</span>
+                   @elseif ($event->status == 'approved')
+                     <span class="text-green-500">Accepted</span>
+                   @elseif ($event->status == 'declined')
+                     <span class="text-red-500">Declined</span>
+                   @endif
+                     </td>
 
-                  <td class="border-b border-gray-600 px-4 py-2">
-                   <div class="flex gap-3">
-                     <x-heroicon-o-eye class="size-7 text-gray-800 cursor-pointer"
-                       onclick="showEventDetails({{ $event->id }}, '{{ $event->name }}', '{{ $event->category }}', '{{ $event->venue }}', '{{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}', '{{ $event->status }}')" />
+                     <td class="border-b border-gray-600 px-4 py-2">
+                      <div class="flex gap-3">
+                        <x-heroicon-o-eye class="size-7 text-green-600 cursor-pointer"
+                          onclick="showEventDetails({{ $event->id }}, '{{ $event->name }}', '{{ $event->category }}', '{{ $event->venue }}', '{{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}', '{{ $event->status }}')" />
 
-                     <x-heroicon-o-trash class="size-7 text-red-700 cursor-pointer"
-                       onclick="deleteEvent({{ $event->id }})" />
-                   </div>
-                  </td>
-                </tr>
-             @endif
+                        {{-- <x-heroicon-o-trash class="size-7 text-red-700 cursor-pointer"
+                          onclick="deleteEvent({{ $event->id }})" /> --}}
+                      </div>
+                     </td>
+                   </tr>
+                 @endif
               @endforeach
                </tbody>
             </table>
@@ -69,13 +74,12 @@
       <div class="bg-white p-6 rounded-lg shadow-lg max-w-6xl">
          <h2 class="text-xl font-bold mb-4">Event Details</h2>
          <div class="flex gap-3">
-            <div
-               class="size-60 bg-purple-300 rounded-lg flex items-center justify-center overflow-hidden">
+            <div class="size-60 bg-purple-300 rounded-lg flex items-center justify-center overflow-hidden">
                @if ($event->image)
-                  <img src="{{ asset('storage/' . $event->image) }}" class="size-60 object-cover rounded-lg"
+               <img src="{{ asset('storage/' . $event->image) }}" class="size-60 object-cover rounded-lg"
                   alt="Event Image">
                @else
-                  <span class="text-gray-600">No Image Available</span>
+               <span class="text-gray-600">No Image Available</span>
                @endif
             </div>
             <div>
