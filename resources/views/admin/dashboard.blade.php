@@ -18,7 +18,7 @@
                             </div>
                             {{-- value --}}
                             <div>
-                                <h1 class="font-bold text-[24px]">100</h1>
+                                <h1 class="font-bold text-[24px]">{{ $events->count()}}</h1>
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                             </div>
                             {{-- value --}}
                             <div>
-                                <h1 class="font-bold text-[24px]">100</h1>
+                                <h1 class="font-bold text-[24px]">{{ $events->where('status', 'completed')->count()}}</h1>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                             </div>
                             {{-- value --}}
                             <div>
-                                <h1 class="font-bold text-[24px]">100</h1>
+                                <h1 class="font-bold text-[24px]">{{ $events->where('status', 'approved')->count()}}</h1>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                             </div>
                             {{-- value --}}
                             <div>
-                                <h1 class="font-bold text-[24px]">100</h1>
+                                <h1 class="font-bold text-[24px]">{{ $events->where('status', 'declined')->count()}}</h1>
                             </div>
                         </div>
                     </div>
