@@ -14,14 +14,14 @@
         @endphp
 
         @if ($events->count())
-            <h2 class="text-3xl font-bold text-center mb-6">Upcoming Events</h2>
+            <h2 class="text-[24px] lg:text-[40px] font-bold text-center mb-6 text-gray-900">Upcoming Events</h2>
 
             <!-- Category Filter Buttons -->
-            <div class="mb-6 text-center flex justify-center gap-32">
+            <div class="mb-6 text-center flex justify-between lg:justify-around mx-auto">
                 @foreach (['' => 'All', 'Cultural' => 'Cultural', 'Seminar' => 'Seminar', 'Sports' => 'Sports', 'Others' => 'Others'] as $key => $label)
                     <button @click="selectedCategory = '{{ $key }}'"
                         :class="selectedCategory === '{{ $key }}' ? ' text-indigo-500' : 'text-gray-500'"
-                        class="px-4 py-2 rounded-lg font-semibold transition hover:text-indigo-200">
+                        class=" mx-auto py-2 rounded-lg font-semibold transition hover:text-indigo-200 text-[14px] ">
                         {{ $label }}
                     </button>
                 @endforeach
@@ -72,7 +72,7 @@
     </section>
 
     <!-- Modal -->
-    <div x-show="showModal" x-transition @click.away="showModal = false"
+    {{-- <div x-show="showModal" x-transition @click.away="showModal = false"
         class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
         <div class="bg-white p-6 rounded-lg shadow-lg w-[500px]">
             <!-- Centered Title -->
@@ -99,7 +99,7 @@
                 </button>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 
 <style>
