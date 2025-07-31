@@ -18,22 +18,21 @@
 </head>
 
 <body class="font-sans antialiased min-h-screen">
-    <div class="bg-gray-50 text-black/50">
+    <div class="bg-gray-50">
         <div
             class="relative min-h-screen max-w-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
-
             @include('home.nav')
-            <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-
-                <main class="mt-6">
+            <div class="relative w-full lg:max-w-6xl">
+                <main class="lg:mt-6">
                     @include('home.home')
 
                     @include('home.events')
+                    
+                    @include('home.about')
 
                     @include('home.feedback')
-                    <br>
-                    <br>
-                    @include('home.about')
+
+                    @include('home.action')
                 </main>
             </div>
             @include('home.footer')
