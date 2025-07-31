@@ -14,7 +14,7 @@
         @endphp
 
         @if ($events->count())
-            <h2 class="text-[24px] lg:text-[40px] font-bold text-center mb-6 text-gray-900">Upcoming Events</h2>
+            <h2 class="text-[24px] lg:text-[40px] font-semibold text-center mb-6 text-gray-900">Upcoming Events</h2>
 
             <!-- Category Filter Buttons -->
             <div class="mb-6 text-center flex justify-between lg:justify-around mx-auto">
