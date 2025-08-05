@@ -11,7 +11,7 @@ It allows students, faculty, and administrators to manage events efficiently wit
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
+- [Laravel](#powered-by)
 
 ---
 
@@ -100,6 +100,8 @@ This system improves transparency, reduces paperwork, and ensures a smooth appro
 - Commit your changes.
 - Push to your branch and create a Pull Request.
 
+
+## Powered-by: 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
