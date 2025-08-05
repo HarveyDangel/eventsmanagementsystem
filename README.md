@@ -1,3 +1,105 @@
+# 🎉 Event Management System (EMS)
+
+A **web-based platform** designed for **Biliran Province State University (BiPSU)** to simplify event scheduling, tracking, and feedback collection.  
+It allows students, faculty, and administrators to manage events efficiently with role-based access control.
+
+## 📌 Table of Contents
+- [About](#about)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [System Roles](#system-roles)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
+## About
+
+The **Event Management System (EMS)** is a Laravel-based application for organizing and managing university events.  
+It provides an easy way for student organizations to propose events, for faculty to oversee activities, and for the admin to maintain proper event records.
+
+This system improves transparency, reduces paperwork, and ensures a smooth approval process.
+
+---
+
+## Features
+
+- 🔐 **Multi-role Authentication** (Admin, Faculty/Student Organization)
+- 🗓 **Event Creation & Approval Workflow**
+- 📋 **Event List & History Tracking**
+- 💬 **Feedback Collection**
+- 📊 **Dashboard with Statistics**
+- 📂 **Account Management** by Admin
+- ⚡ **Fast & Lightweight** UI with Alpine.js
+
+---
+
+## Tech Stack
+
+| Category   | Technology |
+|------------|------------|
+| Framework  | Laravel |
+| Frontend   | Blade Templates, Alpine.js |
+| Database   | MySQL |
+| Architecture | MVC |
+| Styling    | Tailwind CSS |
+| Deployment | Local / Cloud Hosting |
+
+---
+
+## System Roles
+
+| Role  | Permissions |
+|-------|-------------|
+| **Admin** | Manage accounts, approve/decline events, view all data |
+| **Faculty/Student Organization** | Create events, submit for approval, view events, monitor activities, give feedback |
+
+---
+
+## Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/event-management-system.git
+   cd event-management-system
+
+2. **Install dependencies
+   ```bash
+   composer install
+   npm install
+
+3. **Set up environment file**
+   ```bash
+    cp .env.example .env
+    php artisan key:generate
+
+4. **Configure database**
+- Create a new MySQL database (e.g., ems_db)
+- Update .env with your DB credentials
+
+5. **Run Migration**
+   ```bash
+    php artisan migrate
+
+5. **Serve the application**
+   ```bash
+    php artisan serve
+
+## Usage
+- Login with your role credentials.
+- Navigate to Events to view or create an event.
+- Submit events for approval (for organizations).
+- Approve/decline events (for admin).
+- Give feedback about the system.
+
+## Contributing
+- Fork the repository.
+- Create a new branch (feature/your-feature).
+- Commit your changes.
+- Push to your branch and create a Pull Request.
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
