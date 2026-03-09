@@ -1,9 +1,9 @@
-# 🎉 Event Management System (EMS)
+# Event Management System (EMS)
 
 A **web-based platform** designed for **Biliran Province State University (BiPSU)** to simplify event scheduling, tracking, and feedback collection.  
 It allows students, faculty, and administrators to manage events efficiently with role-based access control.
 
-## 📌 Table of Contents
+## Table of Contents
 - [About](#about)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
@@ -26,13 +26,13 @@ This system improves transparency, reduces paperwork, and ensures a smooth appro
 
 ## Features
 
-- 🔐 **Multi-role Authentication** (Admin, Faculty/Student Organization)
-- 🗓 **Event Creation & Approval Workflow**
-- 📋 **Event List & History Tracking**
-- 💬 **Feedback Collection**
-- 📊 **Dashboard with Statistics**
-- 📂 **Account Management** by Admin
-- ⚡ **Fast & Lightweight** UI with Alpine.js
+- **Multi-role Authentication** (Admin, Faculty/Student Organization)
+- **Event Creation & Approval Workflow**
+- **Event List & History Tracking**
+- **Feedback Collection**
+- **Dashboard with Statistics**
+- **Account Management** by Admin
+- **Fast & Lightweight** UI with Alpine.js
 
 ---
 
