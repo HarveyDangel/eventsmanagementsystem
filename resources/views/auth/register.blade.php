@@ -1,19 +1,19 @@
 <x-guest-layout>
     <div class="lg:grid lg:grid-cols-2">
         <!-- Left Side (Full Height) -->
-        <div class="lg:bg-indigo-800 lg:flex lg:mx-auto lg:items-center lg:text-white px-8 hidden">
-            <h2 class="text-3xl font-bold text-left leading-tight uppercase">
-                join now to seamlessly plan, organize, and manage your events <br><span class="text-5xl">5x faster</span>
+        <div class="lg:bg-gradient-to-br from-indigo-600 to-blue-600 lg:flex lg:mx-auto lg:items-center lg:text-white px-8 hidden">
+            <h2 class="text-2xl font-bold text-left leading-relaxed uppercase">
+                join now to seamlessly plan, organize, and manage your events <br><br><span class="text-6xl">5x faster</span>
             </h2>
         </div>
 
         <!-- Right Side (Registration Form) -->
         <div class="flex justify-center items-center">
             <form method="POST" action="{{ route('register') }}"
-                class="w-full max-w-md p-8 bg-white rounded-lg">
+                class="w-full max-w-md p-8 bg-white">
                 @csrf
                 <div class="text-center">
-                    <h1 class="text-xl">Let's get started!</h1>
+                    <h1 class="text-xl font-semibold">Let's get started!</h1>
                     <p class="text-sm mb-2">Register your account.</p>
                 </div>
                 <!-- Name -->

@@ -1,6 +1,6 @@
 <div id="feedback"></div>
 
-<section class="section py-10 h-full lg:max-h-screen mt-10">
+<section class="section py-10 lg:max-h-screen mt-10">
     
     <div class="mx-auto">
         <div class="justify-center items-center flex flex-col">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 
 <head>
     <meta charset="utf-8">
@@ -20,10 +20,10 @@
 <body class="font-sans antialiased min-h-screen">
     <div class="bg-gray-50">
         <div
-            class="relative min-h-screen max-w-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
+            class="relative min-h-screen max-w-screen flex flex-col items-center justify-center selection:bg-indigo-500 selection:text-white scroll-smooth">
             @include('home.nav')
             <div class="relative w-full lg:max-w-6xl">
-                <main class="lg:mt-6">
+                <main class="lg:mt-6 grid grid-cols-1">
                     @include('home.home')
 
                     @include('home.events')

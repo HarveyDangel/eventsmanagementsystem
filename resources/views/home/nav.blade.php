@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="border-b bg-white border-gray-100 sticky top-0 w-full z-50">
+<nav x-data="{ open: false }" class="border-b bg-white/50 border-gray-100 sticky top-0 w-full z-50 backdrop-blur-lg shadow-sm">
 
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -6,17 +6,17 @@
             <div class="flex items-center justify-between w-full">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="#home" class="sm:text-2xl md:text-4xl text-[26px] font-semibold">
+                    <a href="#home" class="sm:text-2xl md:text-3xl font-semibold text-gray-800">
                         EventMS
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:flex">
-                    <a href="#home" class="">Home</a>
-                    <a href="#events" class="">Events</a>
-                    <a href="#about" class="">About</a>
-                    <a href="#feedback" class="">Feedback</a>   
+                    <a href="#home" class="hover:text-indigo-500">Home</a>
+                    <a href="#events" class="hover:text-indigo-500">Events</a>
+                    <a href="#about" class="hover:text-indigo-500">About</a>
+                    <a href="#feedback" class="hover:text-indigo-500">Feedback</a>   
                 </div>
             </div>
 

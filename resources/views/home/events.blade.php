@@ -1,9 +1,9 @@
-<div id="events" x-data="{
+<div x-data="{
     showModal: false,
     event: {},
     selectedCategory: ''
 }">
-    <section class="relative overflow-hidden py-10 mt-10">
+    <section id="events" class="relative overflow-hidden py-10 mt-10 scroll-mt-16">
         @php
             use Carbon\Carbon;
             use Illuminate\Support\Str;

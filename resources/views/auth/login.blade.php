@@ -1,5 +1,4 @@
 <x-guest-layout>
-
     <div class="lg:grid lg:grid-cols-2">
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -9,7 +8,7 @@
                 @csrf
 
                 <div class="text-center">
-                    <h1 class="text-xl">Welcome!</h1>
+                    <h1 class="text-xl font-semibold">Welcome!</h1>
                     <p class="text-sm mb-2">Log in to your account.</p>
                 </div>
                 <!-- Email Address -->
@@ -68,13 +67,10 @@
             </form>
         </div>
 
-        <div class="lg:bg-indigo-800 lg:flex lg:mx-auto lg:items-center lg:text-white px-8 hidden">
-            <h2 class="text-3xl font-bold text-left leading-tight uppercase">
-                welcome back, your events are waiting for you! <br><span class="text-5xl">Let's go</span>
+        <div class="lg:bg-gradient-to-br from-indigo-600 to-blue-600 lg:flex lg:mx-auto lg:items-center lg:text-white px-8 hidden">
+            <h2 class="text-3xl font-bold text-left leading-relaxed uppercase">
+                welcome back, your events are waiting for you! <br><br><span class="text-6xl">Let's go</span>
             </h2>
         </div>
     </div>
-
-
-
 </x-guest-layout>
